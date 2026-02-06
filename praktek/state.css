@@ -1,0 +1,25 @@
+body{
+    background-color: aquamarine;
+}
+
+.question{
+    display: grid;
+    padding: 2.3px 5px ;
+    justify-content: center;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,0.1);
+}
+
+.answer{
+    display: none;
+    margin-inline: auto;
+}

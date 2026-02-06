@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="cards"></div>
+
+    <script>
+        // data
+        const services = [
+            {title : "landing  page"},
+            {title : "Company Profile"},
+            {title : "Deployment"},
+        ];
+
+        // looping
+        const container = document.getElementById("cards");
+
+        services.forEach((service) => {
+            const card = document.createElement("div");
+            card.textContent = service.title;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="state2.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="question">
+        <div class="top">
+            <h3>do you ready to level up?</h3>
+            <div class="icon">▲</div>
+        </div>
+        <div class="bttm">
+            <p>YES, I DO!</p>
+        </div>
+    </div>
+
+<script>
+    const q = document.querySelector(".question");
+    const card = document.querySelector(".top")
+    
+    card.addEventListener("click", () => {
+        q.classList.toggle("active");
+    });
+</script>
+
+</body>
+</html>

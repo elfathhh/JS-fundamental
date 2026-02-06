@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+    <link rel="stylesheet" href="state.css">
+</head>
+<body>
+    <div class="question">
+        <div class="top">
+            <h3>nyerah aja, that simple!</h3>
+            <div class="icon">▲</div>
+        </div>
+        <div class="answer">
+            <p>> ga cocok buat orang keren kaya saya</p>
+        </div>
+    </div>
+
+
+<script>
+    alert("ANJIIING");
+    const q = document.querySelector(".question");
+    const btn = document.querySelector(".top");
+    const answer = document.querySelector(".answer");
+
+    let isOpen = false;
+
+    function render() {
+        if (isOpen) {
+            answer.style.display = "block";
+        } else {
+            answer.style.display = "none";
+        }
+    }
+
+    btn.addEventListener("click", () =>{
+        console.log("diklik!")
+        isOpen = !isOpen;
+        render();
+    });
+</script>
+</body>
+</html>

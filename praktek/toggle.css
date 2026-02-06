@@ -1,0 +1,21 @@
+.question{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.bttm{
+    display: none;
+}
+
+.question.active .bttm{
+    display: block;
+}

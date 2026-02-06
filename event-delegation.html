@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="question">
+  <button class="top">
+    <p>Pertanyaan?</p>
+    <i class="icon">▲</i>
+  </button>
+  <p class="bottom">Jawaban</p>
+</div>
+
+
+
+    <script>
+        const questionsContainer = document.querySelector(".question")
+
+        questionsContainer.addEventListener("click", (e) => {
+          if (e.target.closest(".top")) {
+            e.target.closest(".question").classList.toggle("active");
+          }
+        });
+
+    </script>
+</body>
+</html>

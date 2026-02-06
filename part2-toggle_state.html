@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#2</title>
+    <style>
+        .top{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .answer {
+          display: none;    
+        }
+
+        .question.active .answer {
+          display: block;
+        }
+
+        .question.active .icon{
+           transform: rotate(180deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="question">
+        <div class="top">
+          <h5>Kenapa langit biru?</h5>
+          <i class="icon">▲</i>
+        </div>
+        <p class="answer">
+          Karena cahaya...
+        </p>
+    </div>
+
+
+    <script>
+        const questions = document.querySelectorAll(".question");
+
+        questions.forEach((question) => {
+          const btn = question.querySelector(".top");
+        
+          btn.addEventListener("click", () => {
+            question.classList.toggle("active");
+          });
+        });
+    </script>
+</body>
+</html>

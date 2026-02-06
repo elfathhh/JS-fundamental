@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hari #1 learn js</title>
+</head>
+<body>
+    <button id="btn">Klik aku</button>
+    <p id="text">Halo</p>
+
+
+    <script>
+        btn = document.querySelector("#btn");
+        teksAwal = document.querySelector("#text");
+
+        btn.addEventListener("click", function(){
+            teksAwal.textContent = "aku berubah!";
+        });
+    </script>
+</body>
+</html>

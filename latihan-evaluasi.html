@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>latihan - Evaluasi</title>
+    <link rel="stylesheet" href="evaluasi.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">LOGO</a>
+
+        <ul class="menu">
+            <li class="menu-list"><a href="#">Home</a></li>
+            <li class="menu-list"><a href="#">About</a></li>
+            <li class="menu-list"><a href="#">News</a></li>
+            <li class="menu-list"><a href="#">Contack</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+            <div class="kiri">
+                <h1>Daygun News</h1>
+                <p>Update cerita Anda Setiap hari dengan berita dari kami yang selalu hagat!</p>
+        </div>
+    </section>
+
+    <section class="news">
+        <h2>Berita Hari Ini</h2>
+        <div id="cards"></div>
+    </section>
+
+    <script>
+        const data = [
+            {title : "ijazah palsu Jokowi"},
+            {title : "Panji dilaporkan"},
+            {title : "Banjir Sulawesi"},
+            {title : "Jule Penimpa Berita Penting"},
+        ];
+
+        const container = document.getElementById("cards");
+
+        data.forEach((berita) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.textContent = berita.title;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

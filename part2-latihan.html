@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .top{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: transparent;
+        border-radius: 8px;
+    }
+
+    .bottom{
+        display: none;
+    }
+
+    .question.active .bottom{
+        display: block;
+    }
+
+    .question.active .icon{
+        transform: rotate(180deg);
+    }
+</style>
+<body>
+    <div class="question">
+        <button class="top">
+            <p><b>apa aku akan sukses?</b></p>
+          <i class="icon">▲</i>
+        </button>
+        <p class="bottom"><i>Ya! Kalau kamu bekerja keras.</i></p>
+    </div>
+
+    <script>
+        const questions = document.querySelectorAll(".question");
+
+        questions.forEach((question) => {
+            const btn = question.querySelector(".top");
+
+            btn.addEventListener("click", () =>{
+                question.classList.toggle("active");
+            });
+        });
+    </script>
+</body>
+</html>
