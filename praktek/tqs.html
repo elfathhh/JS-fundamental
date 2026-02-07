@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tqs.css">
+    <title>T-Q-S</title>
+</head>
+<body>
+    <div class="question">
+        <h1>Tentang Masa Depan.</h1>
+
+        <button class="top">
+            <h3>impian?</h3>
+            <div class="icon">▲</div>
+        </button>
+        <div class="answer">
+            <p>Menjadi berguna</p>
+        </div>
+        
+        <button class="top">
+            <h3>kenapa?</h3>
+            <div class="icon">▲</div>
+        </button>
+        <div class="answer">
+            <p>Ntahlah. aku rasa itu impian yang terbaik.</p>
+        </div>
+
+        <button class="top">
+            <h3>halangan ada?</h3>
+            <div class="icon">▲</div>
+        </button>
+        <div class="answer">
+            <p>ada. rasa nyaman saat lalai.</p>
+        </div>
+
+    </div>
+
+
+<script>
+    const buttons = document.querySelectorAll(".top")
+
+    buttons.forEach((btn) => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector(".icon");
+
+        let isOpen = false;
+
+        function render() {
+            answer.style.display = isOpen ? "block" : "none";
+            icon.style.transform =  isOpen ? "rotate(180deg)" : "rotate(0deg)";
+        };
+
+    btn.addEventListener("click", () => {
+        isOpen = !isOpen;
+        render();
+    });
+});
+</script>
+</body>
+</html>
