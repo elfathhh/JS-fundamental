@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .question{
+            max-width: 1120px;
+        }
+
+        .item{
+            width: 100%;
+            display: grid;
+            text-align: center;
+            gap: 14px;
+        }
+
+        .item .answer{
+            margin-bottom: 8px;
+        }
+
+        .top{
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .answer{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="questions">
+    <div class="item">
+        <button class="top">Impian?</button>
+        <div class="answer">Menjadi berguna</div>
+    </div>
+
+    <div class="item">
+        <button class="top">Kenapa?</button>
+        <div class="answer">Karena hidup perlu arah</div>
+    </div>
+
+    <div class="item">
+        <button class="top">Halangan?</button>
+        <div class="answer">Rasa nyaman</div>
+    </div>
+</div>
+
+
+<script>
+    const container = document.querySelector(".questions");
+
+    container.addEventListener("click", (c) => {
+        const btn = c.target.closest(".top");
+        if (!btn) return;
+
+        const answer = btn.nextElementSibling;
+
+        answer.style.display =
+            answer.style.display === "block" ? "none" : "block";
+    });
+</script>
+
+</body>
+</html>
