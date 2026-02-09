@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .question{
+        .questions{
             max-width: 1120px;
         }
 
@@ -25,6 +25,10 @@
             cursor: pointer;
         }
 
+        .icon{
+            transition: transform 0.3s ease ;
+        }
+
         .answer{
             display: none;
         }
@@ -33,17 +37,26 @@
 <body>
     <div class="questions">
     <div class="item">
-        <button class="top">Impian?</button>
+        <button class="top">
+            Impian?
+            <span class="icon">▲</span>
+        </button>
         <div class="answer">Menjadi berguna</div>
     </div>
 
     <div class="item">
-        <button class="top">Kenapa?</button>
+        <button class="top">
+            Kenapa?
+            <span class="icon">▲</span>
+        </button>
         <div class="answer">Karena hidup perlu arah</div>
     </div>
 
     <div class="item">
-        <button class="top">Halangan?</button>
+        <button class="top">
+            Halangan?
+            <span class="icon">▲</span>
+        </button>
         <div class="answer">Rasa nyaman</div>
     </div>
 </div>
@@ -52,15 +65,19 @@
 <script>
     const container = document.querySelector(".questions");
 
-    container.addEventListener("click", (c) => {
-        const btn = c.target.closest(".top");
+    container.addEventListener("click", (e) => {
+        const btn = e.target.closest(".top");
         if (!btn) return;
 
-        const answer = btn.nextElementSibling;
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector(".icon");
 
-        answer.style.display =
-            answer.style.display === "block" ? "none" : "block";
-    });
+    answer.style.display =
+        answer.style.display === "block" ? "none" : "block";
+    icon.style.transform = 
+        icon.style.transform === "rotate(180deg)" ? "rotate(0deg)" : "rotate(180deg)";
+});
+
 </script>
 
 </body>
