@@ -1,0 +1,27 @@
+.bottom { 
+    display: none; 
+}
+
+
+.icon{
+    transition: 03s ease;
+}
+
+.top{
+    cursor: pointer;
+    padding: 12px ;
+}
+
+.questions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.item.active .bottom { display: block; }
+
+.item.active .icon{
+    transform: rotate(180deg);
+}

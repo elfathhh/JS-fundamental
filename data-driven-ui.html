@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data driven UI</title>
+    <link rel="stylesheet" href="ddu.css">
+</head>
+<body>
+    
+    <div class="questions"></div>
+
+
+<script>
+    const data = [
+        {q:"impian?", an:"Sukses.", aut:"-buny-"},
+        {q:"why?", an:"ntah.", aut:"-buny-"},
+        {q:"hambatan?", an:"my fucking lazy self.", aut:"-buny-"}
+    ];
+
+    const container = document.querySelector(".questions");
+    
+    data.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item";
+
+        div.innerHTML = `
+            <button class="top">
+                ${item.q}
+                <span class="icon">▲</span>
+            </button>
+            <div class="bottom">
+                <div class="answer">${item.an}</div>
+                <div class="author">${item.aut}</div>    
+            </div>
+        `;
+
+        container.appendChild(div);
+    });
+
+    container.addEventListener("click", (e)=> {
+        const btn = e.target.closest(".top");
+        if(!btn) return;
+
+        const tri = btn.closest(".item");
+        tri.classList.toggle("active");
+    });
+</script>
+</body>
+</html>
