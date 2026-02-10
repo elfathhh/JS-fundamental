@@ -70,11 +70,11 @@
         if (!btn) return;
 
     const answer = btn.nextElementSibling;
-    const icon = btn.querySelector(".icon");
+    const symbol = btn.querySelector(".icon");
 
     answer.style.display =
         answer.style.display === "block" ? "none" : "block";
-    icon.style.transform = 
+    symbol.style.transform = 
         icon.style.transform === "rotate(180deg)" ? "rotate(0deg)" : "rotate(180deg)";
 });
 
