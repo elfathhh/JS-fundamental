@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="questions"></div>
+
+
+<script>
+    const data = [
+        {q:"impian?", an:"Sukses."},
+        {q:"why?", an:"ntah."},
+        {q:"hambatan?", an:"my fucking lazy self."}
+    ];
+    const container = document.querySelector(".questions");
+    let activeIndex = null;
+
+    function render() {
+        // kosongkan container
+        container.innerHTML = "";
+         
+        // loop data
+        data.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "item";
+
+            const isActive = index === activeIndex;
+
+            div.innerHTML = `
+                <button class="top" data-index="${index}">
+                    ${item.q}
+                </button>
+                ${isActive ? `<div class="answer">${item.an}</div>` : ""} 
+            `
+            container.appendChild(div);
+        });
+    };
+
+    render();
+    
+    container.addEventListener("click", (e) => {
+        const btn = e.target.closest(".top");
+        if (!btn) return;
+
+        const index = Number(btn.dataset.index);
+
+        activeIndex = activeIndex === index ? null : index;
+        render();
+    });
+
+
+</script>
+</body>
+</html>
