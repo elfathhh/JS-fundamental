@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Source of Turth</title>
+</head>
+<body>
+    <div id="app"></div>
+    
+
+<script>
+    let state = {
+        count : 0
+    };
+
+    function render() {
+        document.getElementById("app").innerHTML = `
+            <h1>${state.count}</h1>
+            <button id="inc">+</button>
+        `
+    }
+
+    render()
+    document.addEventListener("click", (e) =>{
+        if(e.target.id === "inc"){
+            state.count++;
+            render()
+        }
+    });
+</script>
+</body>
+</html>

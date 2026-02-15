@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab.active{
+            background-color: blue;
+            color: #fff;
+        }
+
+        .panel{
+            display: none;
+        }
+
+        .panel.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs"></div>
+    <div class="panels"></div>
+
+<script>
+    tabs = ["Berita", "Olahraga", "Teknologi"];
+    contents = [
+        "konten bertita",
+        "konten Olahraga",
+        "konten Teknologi",
+    ];
+
+    const tabBox = document.querySelector(".tabs");
+    const panelBox = document.querySelector(".panels");
+
+    let activeIndex = 0;
+
+    function render() {
+        tabBox.innerHTML = "";
+        panelBox.innerHTML = "";
+
+        tabs.forEach((label, index) => {
+            const btn = document.createElement("button");
+            btn.className= "tab";
+            
+            btn.dataset.index = index;
+            
+            if (index === activeIndex) btn.classList.add("active");
+            
+            btn.textContent = label;
+
+            tabBox.appendChild(btn);
+        });
+
+        contents.forEach((text, index) => {
+            const panel = document.createElement("div");
+            panel.className = "panel";
+
+            if (index === activeIndex) panel.classList.add("active");
+
+            panel.textContent = text;
+
+            panelBox.appendChild(panel);
+        });
+    }
+
+    render();
+
+    tabBox.addEventListener("click", (t) => {
+        const btn = t.target.closest(".tab");
+        if(!btn) return;
+
+        activeIndex = Number(btn.dataset.index);
+        render();
+    });
+</script>
+</body>
+</html>

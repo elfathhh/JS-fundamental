@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Single Source of Truth</title>
+    <style>
+        .liked.active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="post"></div>
+
+<script>
+    // ini versi salah (percobaan)
+    
+        // const container = document.getElementById("post");
+        // let state = {
+        //     likes : 0,
+        //     liked : false
+        // };
+
+    // function render() {
+    //     container.innerHTML=`
+    //         <button class="liked" id="liked">like</button>
+    //         <div class="likes" id="likes">${state.likes}</div>
+    //     `
+    // }
+
+    // render();
+
+    // document.addEventListener("click", (e) => {
+    //     const like = container.querySelector(".liked");
+    //     const amount = container.querySelector(".likes");
+
+    //     if(e.target.id === "liked"){
+    //         state.liked = true;
+    //         if(state.liked === true){
+    //             like.classList.add("active");
+    //             state.likes++;
+    //         }
+    //     }
+        
+    // });
+
+    // ini yang benar 👇
+    
+    const container = document.getElementById("post");
+    
+    let state = {
+        likes : 0,
+        liked : false
+    };
+
+    function render() {
+        container.innerHTML=`
+            <button class="${state.liked ? "active" : ""}" id="likeBtn">
+                ${state.liked ? "unlike":"like"}
+            </button>
+            <div>${state.likes} likes</div>
+        `;
+    }
+
+    render();
+
+    document.addEventListener("click", (e) => {
+        if (e.target.id !== "likeBtn") return;
+        
+        // ubah state saja
+        if (state.liked){
+            state.liked = false;
+            state.likes--;
+        } else{
+            state.liked = true;
+            state.likes++;
+        }
+
+        render();
+    });
+</script>
+</body>
+</html>
