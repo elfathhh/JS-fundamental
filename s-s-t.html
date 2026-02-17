@@ -45,7 +45,7 @@
         
     // });
 
-    // ini yang benar 👇
+    // ini versi benar 👇
     
     const container = document.getElementById("post");
     
@@ -66,9 +66,8 @@
     render();
 
     document.addEventListener("click", (e) => {
-        if (e.target.id !== "likeBtn") return;
-        
-        // ubah state saja
+        if (e.target.id !== "likeBtn") return; 
+        // ubah state-nya ja
         if (state.liked){
             state.liked = false;
             state.likes--;

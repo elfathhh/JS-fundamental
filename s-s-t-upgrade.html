@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sst - >1</title>
+    <style>
+        .liked{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="feed"></div>
+
+<script>
+    // const container = document.getElementById("feed");
+
+    // let state = [
+    //     {text:"post 1", likes:5, liked: true},
+    //     {text:"post 2", likes:5, liked: false},
+    //     {text:"post 3", likes:110, liked: true}
+    // ];
+
+    // function render() {
+    //     
+    //     state.forEach((post, index) => {
+    //         const div = document.createElement("div");
+
+    //         div.innerHTML = `
+    //             <p>${post.text}</p>
+    //             <button
+    //                 class="likeBtn ${post.liked ? "liked" : ""}"
+    //                 data-index=${index}>
+    //                 ${post.liked ? "unlike" : "like"}
+    //             </button>
+    //             <span>${post.likes}</span>
+    //             <hr>
+    //         `;
+    //     });
+
+    //     container.appendChild(div);
+    // }
+
+    // render();
+
+    // container.addEventListener("click", (e) => {
+    //     const btn = e.target.closest(".likeBtn");
+    //     if(!btn) return;
+
+    //     const index = Number(btn.dataset.index);
+
+    //     if(state[index].liked){
+    //         state[index].likes--;
+    //         state[index].liked = false;
+    //     } else{
+    //         state[index].liked = true;
+    //         state[index].likes++;
+    //     }
+
+    //     render();
+    // });
+    
+    // ini versi benar 👇
+    const container = document.getElementById("feed");
+
+    let state = [
+      { text: "Post 1", likes: 0, liked: false },
+      { text: "Post 2", likes: 3, liked: false },
+      { text: "Post 3", likes: 1, liked: true }
+    ];
+
+    function render() {
+    // MySalah
+    // kosongin dulu containernya
+    // dan LAKUKAN DI DALAM FUNCTION
+    // BARU SETELAH ITU LOOPING DATA
+      container.innerHTML = "";
+
+      state.forEach((post, index) => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+          <p>${post.text}</p>
+          <button 
+            class="likeBtn ${post.liked ? "liked" : ""}" 
+            data-index="${index}">
+            ${post.liked ? "Unlike" : "Like"}
+          </button>
+          <span>${post.likes} likes</span>
+          <hr>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    render();
+
+    container.addEventListener("click", (e) => {
+      const btn = e.target.closest(".likeBtn");
+      if (!btn) return;
+
+      const index = Number(btn.dataset.index);
+
+      if (state[index].liked) {
+        state[index].liked = false;
+        state[index].likes--;
+      } else {
+        state[index].liked = true;
+        state[index].likes++;
+      }
+
+      render();
+    });
+</script>
+</body>
+</html>
