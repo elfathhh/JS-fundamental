@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Source of Turth</title>
+    <style>
+        .likeBtn.liked{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="post"></div>
+
+<script>
+const container = document.getElementById("post");
+
+let state = [
+  { text: "Belajar JS", likes: 0, liked: false },
+  { text: "Ngoding tiap hari", likes: 2, liked: false },
+  { text: "No comfort zone", likes: 1, liked: true }
+];
+
+// function render(){
+//     container.innerHTML = "";
+    
+//     const totalLikes = state.reduce((sum, post) => {
+//         return sum + post.likes;
+//     },0);
+
+//     const displayLikesTotal = document.createElement("h3");
+//     displayLikesTotal.textContent = `Total Likes: ${totalLikes}`;
+
+//     const addBtn = document.createElement("Button")
+//     addBtn.className = "add-btn"
+//     addBtn.textContent = "Add Post"
+
+//     container.appendChild(displayLikesTotal)
+//     container.appendChild(addBtn)
+
+//     state.forEach((post, index) => {
+//         const div = document.createElement("div");
+        
+//         div.innerHTML = `
+
+//             <div class="item">
+//                 <h2>${post.text}</h2>
+//                 <button
+//                     class="likeBtn${post.liked ? "liked" : ""}" 
+//                     data-index=${index}> ${post.liked ? "unlike" : "like"} </button>
+//                 <button class="deleteBtn" data-index="${index}>Delete</button>
+//                 <hr>
+//                 </div>
+//                 <span> Total Likes : ${post.likes}</span>
+//         `;
+//         container.appendChild(div);
+//     });
+// }
+
+function render(){
+    container.innerHTML = "";
+    
+    const totalLikes = state.reduce((sum, post) => sum + post.likes, 0);
+
+    const displayLikesTotal = document.createElement("h3");
+    displayLikesTotal.textContent = `Total Likes: ${totalLikes}`;
+    container.appendChild(displayLikesTotal);
+
+    const addBtn = document.createElement("button");
+    addBtn.className = "add-btn";
+    addBtn.textContent = "Add Post";
+    container.appendChild(addBtn);
+
+    state.forEach((post, index) => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <div class="item">
+                <h2>${post.text}</h2>
+                <button
+                    class="likeBtn ${post.liked ? "liked" : ""}"
+                    data-index="${index}">
+                    ${post.liked ? "Unlike" : "Like"}
+                </button>
+                <button class="deleteBtn" data-index="${index}">
+                    Delete
+                </button>
+                <span>${post.likes} likes</span>
+                <hr>
+            </div>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+render();
+
+// container.addEventListener("click", (e) =>{
+//     const add = e.target.closest(".add-btn")
+//     const likeBtn = e.target.closest(".likeBtn");
+//     const deleteBtn = e.target.closest(".deleteBtn");
+//     if(!likeBtn && !deleteBtn) return;
+
+    
+//     if(likeBtn){
+//         const index = Number(likeBtn.dataindex.index);
+
+//         if(state[index].liked){
+//             state[index].liked = false;
+//             state[index].likes--;
+//         }else{
+//             state[index].liked = true;
+//             state[index].likes++;
+//         }
+//     }
+
+//     if(deleteBtn){
+//         const index = Number(btn.dataindex.index);
+//         state.splice(index, 1);
+//         render();
+//     }
+
+//     if(add) {
+//         state.push({
+//           text: "Post baru",
+//           likes: 0,
+//           liked: false
+//         });
+//         render();
+//     }
+
+//     render();
+// });
+
+container.addEventListener("click", (e) =>{
+
+    const likeBtn = e.target.closest(".likeBtn");
+    const deleteBtn = e.target.closest(".deleteBtn");
+    const add = e.target.closest(".add-btn");
+
+    if(add){
+        state.push({
+          text: "Post baru",
+          likes: 0,
+          liked: false
+        });
+        render();
+        return;
+    }
+
+    if(likeBtn){
+        const index = Number(likeBtn.dataset.index);
+
+        if(state[index].liked){
+            state[index].liked = false;
+            state[index].likes--;
+        }else{
+            state[index].liked = true;
+            state[index].likes++;
+        }
+
+        render();
+        return;
+    }
+
+    if(deleteBtn){
+        const index = Number(deleteBtn.dataset.index);
+        state.splice(index, 1);
+        render();
+    }
+});
+</script>
+</body>
+</html>
