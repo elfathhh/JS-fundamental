@@ -61,7 +61,7 @@ let state = [
 function render(){
     container.innerHTML = "";
     
-    const totalLikes = state.reduce((sum, post) => sum + post.likes, 0);
+    const totalLikes = state.reduce((total, post) => total + post.likes, 0);
 
     const displayLikesTotal = document.createElement("h3");
     displayLikesTotal.textContent = `Total Likes: ${totalLikes}`;
@@ -171,6 +171,18 @@ container.addEventListener("click", (e) =>{
         render();
     }
 });
+
+// note:
+//- di setiap btn TETAP PANGGIL FUNGSI
+//- untuk me-loop sesuatu yang ada di data SELALU GUNAKAN *DATA-SET/INDEX/etc*
+//- gunakan *if()* jika kondisi lebih dari 1
+//- untuk menampilkan sesuatu `dari fungsi jangan lupa *appendChild*
+//- method *reduce()* menggabungkan banyak data menjadi satu nilai:
+//- array.reduce((penampung, item) => {
+//     return penampung_baru;
+// }, nilai_awal);      :
+// jika tidak ada `0 (nilai awal) maka akan digunakan item pertama sebagai nilai awal
+
 </script>
 </body>
 </html>
