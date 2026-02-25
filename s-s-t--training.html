@@ -16,7 +16,8 @@
 <script>
 const container = document.getElementById("post");
 
-let state = [
+// menambahkan local storage
+let state = JSON.parse(localStorage.getItem("posts,")) || [
   { text: "Belajar JS", likes: 0, liked: false },
   { text: "Ngoding tiap hari", likes: 2, liked: false },
   { text: "No comfort zone", likes: 1, liked: true }
@@ -92,7 +93,10 @@ function render(){
         `;
 
         container.appendChild(div);
+        
     });
+    //untuk menyimpan data di local storage:
+localStorage.setItem("posts", JSON.stringify(state));
 }
 
 render();

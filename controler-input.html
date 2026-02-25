@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controler Input</title>
+    <style>
+        .likeBtn.liked{
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="post"></div>
+
+<script>
+let state = JSON.parse(localStorage.getItem("posts")) || [
+    {text:"ada lah pokoknya", likes:7, liked:true},
+    {text:"ada lah pokoknya", likes:7, liked:true},
+    {text:"ada lah pokoknya", likes:7, liked:true}
+];
+let newPostText = "";
+
+const container = document.getElementById("post");
+
+
+function postComponent(post, index){
+    return `
+    <div class="item">
+        <h3>${post.text}</h3>
+        <button
+        class="likeBtn ${post.liked ? "liked": ""}" 
+        data-index="${index}">
+        ${post.liked ? "Unlike" : "Like"}
+        </button>
+        <button class="deleteBtn" data-index="${index}">Delete</button>
+            <span>${post.likes} likes</span>
+            <hr>
+        </div>
+    `;
+}
+
+function HeaderComponent(totalLikes){
+    return `
+        <div class="header">
+            <h3>Total Likes: ${totalLikes}</h3>
+            <input 
+                class="postInput"
+                placeholder="Tulis Postingan"
+                value=${newPostText}
+            >
+            <button class="addBtn">Add Post</button>
+        </div>
+            <hr>
+    `;
+}
+
+function AppComponent(){
+    const totalLikes = state.reduce(
+        (sum, post) => sum + post.likes, 0) 
+
+    let html ="";
+
+    html += HeaderComponent(totalLikes);
+    
+    state.forEach((post, index) => {
+        html += postComponent(post, index);
+    });
+
+    //JANGAN LUPA UNTUK SELALU RETURN NILAI YANG SUDAH DIBUAT
+    return html;
+}
+
+
+function render(){
+    container.innerHTML= AppComponent();
+
+    localStorage.setItem("posts", JSON.stringify(state));
+}
+
+render();
+
+//event input
+container.addEventListener("input",(e) =>{
+    if(e.target.classList.contains("postInput")){
+        newPostText = e.target.value
+    }
+});
+
+container.addEventListener("click", (e) =>{
+
+    const likeBtn = e.target.closest(".likeBtn");
+    const deleteBtn = e.target.closest(".deleteBtn");
+    const add = e.target.closest(".addBtn");
+
+    
+    if(add){
+        if(newPostText.trim() === "") return;
+
+        state.push({
+            text: newPostText,
+            likes: 0,
+            liked: false
+        });
+
+        newPostText = ""; // reset input
+        render();
+    }
+
+    if(likeBtn){
+        const index = Number(likeBtn.dataset.index);
+
+        if(state[index].liked){
+            state[index].liked = false;
+            state[index].likes--;
+        }else{
+            state[index].liked = true;
+            state[index].likes++;
+        }
+
+        render();
+        return;
+    }
+
+    if(deleteBtn){
+        const index = Number(deleteBtn.dataset.index);
+        state.splice(index, 1);
+        render();
+    }
+});
+</script>
+</body>
+</html>
