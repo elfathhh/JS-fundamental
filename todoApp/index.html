@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="box"></div>
+
+<script>
+let kegiatan = JSON.parse(localStorage.getItem("history")) || [
+    {apa:"bangun", nilai:false},
+    {apa:"subuh", nilai:false},
+    {apa:"jalan pagi", nilai:false},
+    {apa:"tidur", nilai:false},
+];
+let newAct = "";
+    
+const container = document.getElementById("box");
+
+function HeaderApp(){
+    return `
+    <header>
+        <div class="header-top">
+            <h2>Jangan Sampai Lupa Kegiatanmu Hari Ini!</h2>
+            <span>Do it! or You'll be gay</span>
+            <hr>
+        </div>
+        <div class="header-bttm">
+            <input class="todoInput" placeholder="Tambahkan Kegiatan" value="${newAct}">
+            <button class="addBtn">Add Activity</button>
+            </div>
+    </header>
+    `
+}
+
+function BodyApp(post, index){
+    return `
+    <div class="bodyApp">
+        <div class="bodyApp-top">
+            <div
+            class="activity ${post.nilai ? "did" : ""}"
+            data-index=${index}>
+            ${post.apa}!
+            </div>
+            <div class="list ${post.nilai ? "chek" : ""}"></div>
+        </div>
+            <div class="bodyApp-bttm">
+                <button class="deleteBtn" data-index=${index}>delete</button>
+                <hr>
+            </div>
+    </div>
+    `
+}
+
+function TheApp(){
+    let html="";
+
+    html += HeaderApp();
+
+    kegiatan.forEach((post, index) => {
+        html += BodyApp(post, index)
+    });
+
+    return html;
+}
+
+function render(){
+    container.innerHTML = TheApp();
+
+    localStorage.setItem("history", JSON.stringify(kegiatan));
+}
+
+render();
+
+container.addEventListener("input", (e) => {
+    const todoInput = e.target.closest(".todoInput");
+    if(todoInput){
+        newAct = todoInput.value;
+    }
+});
+
+
+container.addEventListener("click", (e) => {
+    const addBtn = e.target.closest(".addBtn");
+    const act = e.target.closest(".activity");
+    const deleteBtn = e.target.closest(".deleteBtn");
+
+    if(addBtn){
+        kegiatan.push({
+            apa: newAct,
+            nilai: false,
+        });
+
+        newAct = ""
+        render();
+    }
+
+    if(act){
+        const index = Number(act.dataset.index);
+
+        if(kegiatan[index].nilai){
+            kegiatan[index].nilai = false;
+        } else{
+            kegiatan[index].nilai = true;
+        }
+
+        render();
+        return;
+    }
+
+    if(deleteBtn){
+        const index  = Number(deleteBtn.dataset.index);
+
+        kegiatan.splice(index, 1);
+        render();
+    }
+});
+</script>
+</body>
+</html>

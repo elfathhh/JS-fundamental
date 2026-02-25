@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: cadetblue;
+}
+
+#box{
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header{
+    align-items: center;
+    justify-content: center;
+    display: grid;
+}
+
+.header-top{
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.header-top span{
+    color: #eaeaea;
+}
+
+.header-bttm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bodyApp{
+    padding: 1.5rem;
+    width: 250px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.bodyApp-top{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding-bottom: 8px;
+}
+
+.activity{
+    border-style: none;
+    width: fit-content;
+    height: 15px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.activity.did{
+    color: #b0c0cd;
+}
+
+.list{
+    width: 15px;
+    height: 15px;
+    background-color: #b5bcc1;
+    border-radius: 4px;
+}
+
+.list.chek{
+    background-color: rgb(59, 120, 194);
+}
+
