@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="box"></div>
-
+    <div id="doneBox"></div>
 <script>
 let kegiatan = JSON.parse(localStorage.getItem("history")) || [
     {apa:"bangun", nilai:false},
@@ -17,6 +17,8 @@ let kegiatan = JSON.parse(localStorage.getItem("history")) || [
     {apa:"tidur", nilai:false},
 ];
 let newAct = "";
+
+let mode= "all";
     
 const container = document.getElementById("box");
 
@@ -33,7 +35,17 @@ function HeaderApp(){
             <button class="addBtn">Add Activity</button>
             </div>
     </header>
-    `
+    `;
+}
+
+function NavbarBody(){
+    return `
+        <div class="navbarBody">
+            <button class="navBtn" data-mode="all">All</button>
+            <button class="navBtn" data-mode="unfinished">Unfinished</button>
+            <button class="navBtn" data-mode="finished">Finished</button>
+        </div>
+    `;
 }
 
 function BodyApp(post, index){
@@ -47,34 +59,76 @@ function BodyApp(post, index){
             </div>
             <div class="list ${post.nilai ? "chek" : ""}"></div>
         </div>
-            <div class="bodyApp-bttm">
-                <button class="deleteBtn" data-index=${index}>delete</button>
-                <hr>
-            </div>
+        <div class="bodyApp-bttm">
+            <button class="deleteBtn" data-index=${index}>delete</button>
+            <hr>
+        </div>
     </div>
-    `
+    `;
 }
 
-function TheApp(){
-    let html="";
+function AllAct(){
+    let html= "";
 
-    html += HeaderApp();
-
-    kegiatan.forEach((post, index) => {
-        html += BodyApp(post, index)
+    kegiatan.forEach((post, index) =>{
+        html += BodyApp(post, index);
     });
 
     return html;
 }
 
+function UnfinishedAct(){
+    let html= "";
+
+    kegiatan.forEach((post, index) => {
+        if(!post.nilai){
+            html += BodyApp(post, index);
+        }
+    });
+
+    return html;
+}
+
+function FinishedAct(){
+    let html= "";
+
+    kegiatan.forEach((post, index) => {
+        if(post.nilai) {
+            html += BodyApp(post, index);
+        }
+    });
+
+    return html;
+}
+
+function TheApp(){
+    let html="";
+
+    html += HeaderApp() ; //mungkin disini
+    html += NavbarBody() ; //mungkin disini
+
+    return html;
+}
+
 function render(){
-    container.innerHTML = TheApp();
+    let html = TheApp();
+
+    if (mode === "all"){
+        html += AllAct();
+    } else if(mode === "unfinished"){
+        html += UnfinishedAct();
+    }else if(mode === "finished"){
+        html += FinishedAct();
+    }
+
+    container.innerHTML = html;
 
     localStorage.setItem("history", JSON.stringify(kegiatan));
 }
 
 render();
 
+//event input
 container.addEventListener("input", (e) => {
     const todoInput = e.target.closest(".todoInput");
     if(todoInput){
@@ -82,7 +136,23 @@ container.addEventListener("input", (e) => {
     }
 });
 
+//event navbar
+container.addEventListener("click", (e) => {
+    const navBtn = e.target.closest(".navBtn");
 
+    if(navBtn){
+        mode = navBtn.dataset.mode;
+
+        render();
+        return;
+    }
+});
+//kenapa navbar tadi ga work:
+//- salah selector (kurang titik)
+//- harus ada data-mode
+//- nilai mode tidak cocok di render (karena typo)
+
+//event todo
 container.addEventListener("click", (e) => {
     const addBtn = e.target.closest(".addBtn");
     const act = e.target.closest(".activity");

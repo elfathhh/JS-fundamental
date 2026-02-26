@@ -42,6 +42,20 @@ header{
     gap: 10px;
 }
 
+.navbarBody{
+    padding: 15px;
+}
+
+.navBtn{
+    border-style: none;
+    background: transparent;
+    color: aliceblue;
+    cursor: pointer;
+    gap: 20px;
+}
+
+
+
 .bodyApp{
     padding: 1.5rem;
     width: 250px;
