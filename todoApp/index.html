@@ -23,12 +23,18 @@ let mode= "all";
 const container = document.getElementById("box");
 
 function HeaderApp(){
+    const total = kegiatan.length;
+    const done = kegiatan.filter(sudah => sudah.nilai).length;
+    const pending = total - done;
     return `
     <header>
         <div class="header-top">
             <h2>Jangan Sampai Lupa Kegiatanmu Hari Ini!</h2>
             <span>Do it! or You'll be gay</span>
             <hr>
+        </div>
+        <div class="header-center">
+            <span>Total: ${total} | Done: ${done} | Pending: ${pending}
         </div>
         <div class="header-bttm">
             <input class="todoInput" placeholder="Tambahkan Kegiatan" value="${newAct}">
@@ -113,7 +119,9 @@ function TheApp(){
 function render(){
     let html = TheApp();
 
-    if (mode === "all"){
+    if(kegiatan.length === 0){
+        html += `<p class="empty">Kosong</p>`
+    }else if (mode === "all"){
         html += AllAct();
     } else if(mode === "unfinished"){
         html += UnfinishedAct();

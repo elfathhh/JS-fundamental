@@ -34,6 +34,14 @@ header{
     color: #eaeaea;
 }
 
+.header-center{
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+    margin: 15px 0;
+    font-size: 20px;
+}
+
 .header-bttm{
     display: flex;
     flex-direction: row;
@@ -91,6 +99,13 @@ header{
 }
 
 .list.chek{
-    background-color: rgb(59, 120, 194);
+    background-color: blue;
 }
 
+.empty{
+    text-align: center;
+    justify-content: center;
+    color: rgb(192, 51, 51);
+    font-size: 35px;
+    margin: 100px 0;
+}
